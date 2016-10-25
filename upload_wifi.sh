@@ -1,5 +1,7 @@
 #!/bin/sh
 
+umask 000
+
 function notifyme
 {
   tmp=/tmp/myerr.log
@@ -10,7 +12,8 @@ EOF
   cat $tmp | /usr/sbin/sendmail -t -F "God" -r "lifeng1519@oracle.com"
 }
 
-BASE_DIR=$HOME/oracle_weixin
+#BASE_DIR=$HOME/oracle_weixin
+BASE_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 # usging newfox
 #To:sps_BJ_DEV_CN_GRP@oracle.com
 content=`python $BASE_DIR/get_wifi.py 2>/dev/null`
